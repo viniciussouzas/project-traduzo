@@ -12,7 +12,7 @@ class LanguageModel(AbstractModel):
         return {
             "name": self.data["name"],
             "acronym": self.data["acronym"],
-      }
+        }
 
     @classmethod
     def list_dicts(cls):
