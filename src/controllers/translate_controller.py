@@ -36,3 +36,23 @@ def post_translate():
         translate_to=translate_to,
         translated=translated
     )
+
+
+@translate_controller.route("/reverse", methods=["POST"])
+def reverse_translate():
+    text_to_translate = request.form["text-to-translate"]
+    translate_from = request.form["translate-from"]
+    translate_to = request.form["translate-to"]
+
+    translated = GoogleTranslator(
+        source=translate_from, target=translate_to
+    ).translate(text_to_translate)
+
+    return render_template(
+        "index.html",
+        languages=LanguageModel.list_dicts(),
+        text_to_translate=translated,
+        translate_from=translate_to,
+        translate_to=translate_from,
+        translated=text_to_translate
+    )
